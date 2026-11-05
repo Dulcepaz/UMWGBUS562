@@ -219,5 +219,10 @@ __marimo__/
 # Streamlit
 .streamlit/secrets.toml
 
-# Week 3 RAG tool: local Chroma database (rebuild with: .venv/bin/python week-03/ask.py --rebuild)
+# Week 3 RAG tool: local Chroma databases, one per document folder
+# (rebuild with: .venv/bin/python week-03/ask.py --docs <folder> --rebuild)
 week-03/chroma-db/
+week-03/chroma-dbs/
+
+.DS_Store
+

@@ -1,14 +1,17 @@
-"""Ask questions about Copperline Manufacturing's finance documents (RAG).
+"""Ask questions about a folder of documents (RAG).
 
-Documents in week-03/copperline-docs are split into one chunk per section,
-stored in a local Chroma database (week-03/chroma-db), and the 4 most relevant
-chunks are sent to Claude together with the question.
+Documents in a folder (week-03/copperline-docs unless --docs names another) are
+split into one chunk per section, stored in a local Chroma database (one per
+folder, under week-03/chroma-dbs/), and the 6 most relevant chunks are sent to
+Claude together with the question.
 
 Usage (from the top of the repository):
     .venv/bin/python week-03/ask.py "How much can I spend on dinner in Boston?"
     .venv/bin/python week-03/ask.py              # ask several questions in a row
     .venv/bin/python week-03/ask.py --rebuild    # rebuild after adding/removing documents
     .venv/bin/python week-03/ask.py --show-chunks
+    .venv/bin/python week-03/ask.py --docs week-03/larkfield-docs --rebuild
+    .venv/bin/python week-03/ask.py --docs week-03/larkfield-docs "..." --save week-03/runs/q1.txt
 """
 
 import argparse
@@ -24,13 +27,13 @@ import pdfplumber
 from bs4 import BeautifulSoup
 
 WEEK_DIR = Path(__file__).resolve().parent
-DOCS_DIR = WEEK_DIR / "copperline-docs"
-DB_DIR = WEEK_DIR / "chroma-db"
+DEFAULT_DOCS_DIR = WEEK_DIR / "copperline-docs"
+DBS_DIR = WEEK_DIR / "chroma-dbs"  # one database per document folder (git-ignored)
 KEY_FILE = WEEK_DIR.parent.parent / "API-Key.txt"  # folder that contains the repo
 
-COLLECTION = "copperline_docs"
+COLLECTION = "docs"
 MODEL = "claude-sonnet-5"
-TOP_K = 4
+TOP_K = 6
 PREVIEW_CHARS = 150
 MAX_CHUNK_WORDS = 400  # longer sections are split at paragraph breaks
 
@@ -50,13 +53,23 @@ CONTEXT_NOTES = {
 }
 
 SYSTEM_PROMPT = """\
-You answer questions about Copperline Manufacturing's finance documents. \
+You answer questions about an organization's internal documents. \
 Use only the sources provided in the user's message.
 
 Rules:
 - Answer only with facts stated in the sources. Do not use outside knowledge or make assumptions.
+- When a source gives several rules, thresholds, or levels of approval, keep each condition \
+with the rule the source attaches it to; do not move a condition from one rule to another. \
+Before adding a side note the question did not ask about, check it against the source's \
+exact wording, and leave it out if you are not sure it is accurate.
+- If the sources give timing rules that could change the answer, such as cutoff times, \
+what counts as a business day, or when something is treated as received, state them \
+and explain how they affect the answer.
+- Do not assume facts about the situation that the question does not state. If a rule \
+depends on something the question leaves open, such as a total that could include other \
+items, say what the answer depends on instead of deciding it.
 - Cite the source file for every fact, in square brackets right after it, \
-for example [travel-expense-policy.html].
+for example [policy-name.html].
 - If the sources do not contain the answer, say clearly that the documents provided \
 do not answer the question, instead of guessing. If they answer only part of it, \
 answer that part and say what is missing.
@@ -228,9 +241,9 @@ def split_long(paras):
     return parts
 
 
-def make_chunks(path):
+def make_chunks(path, docs_dir):
     title, status, sections = READERS[path.suffix.lower()](path)
-    source = path.relative_to(DOCS_DIR).as_posix()
+    source = path.relative_to(docs_dir).as_posix()
     context = CONTEXT_NOTES.get(source)
     chunks = []
     for heading, paras in sections:
@@ -250,42 +263,57 @@ def make_chunks(path):
     return chunks
 
 
-def document_files():
-    return sorted(p for p in DOCS_DIR.rglob("*") if p.is_file() and not p.name.startswith("."))
+def document_files(docs_dir):
+    return sorted(p for p in docs_dir.rglob("*") if p.is_file() and not p.name.startswith("."))
 
 
-def fingerprint(files):
+def fingerprint(files, docs_dir):
     """Changes whenever a document is added, removed, or edited."""
     h = hashlib.sha256()
     for p in files:
-        h.update(f"{p.relative_to(DOCS_DIR)}|{p.stat().st_size}|{p.stat().st_mtime_ns}".encode())
+        h.update(f"{p.relative_to(docs_dir)}|{p.stat().st_size}|{p.stat().st_mtime_ns}".encode())
     return h.hexdigest()[:16]
+
+
+def shown(path):
+    """Path relative to the repository when possible, for messages."""
+    try:
+        return path.relative_to(WEEK_DIR.parent).as_posix()
+    except ValueError:
+        return str(path)
 
 
 # ---------------------------------------------------------------------------
 # Chroma database
 # ---------------------------------------------------------------------------
 
-def open_db():
-    return chromadb.PersistentClient(path=str(DB_DIR))
+def db_dir_for(docs_dir):
+    """Each document folder gets its own database, e.g. chroma-dbs/larkfield-docs-1a2b3c4d.
+    The hash of the full path keeps two folders with the same name apart."""
+    tag = hashlib.sha256(str(docs_dir).encode()).hexdigest()[:8]
+    return DBS_DIR / f"{docs_dir.name}-{tag}"
 
 
-def build(client):
-    files = document_files()
+def open_db(docs_dir):
+    return chromadb.PersistentClient(path=str(db_dir_for(docs_dir)))
+
+
+def build(client, docs_dir):
+    files = document_files(docs_dir)
     if COLLECTION in [c.name for c in client.list_collections()]:
         client.delete_collection(COLLECTION)
     collection = client.create_collection(
         COLLECTION,
         configuration={"hnsw": {"space": "cosine"}},  # Chroma's default embedding model
-        metadata={"fingerprint": fingerprint(files)},
+        metadata={"fingerprint": fingerprint(files, docs_dir)},
     )
-    print(f"Building the database from {DOCS_DIR.relative_to(WEEK_DIR.parent)}/ ...")
+    print(f"Building the database from {shown(docs_dir)}/ ...")
     total = 0
     for path in files:
         if path.suffix.lower() not in SUPPORTED:
             print(f"  skipped {path.name} (unsupported file type {path.suffix or 'none'})")
             continue
-        chunks = make_chunks(path)
+        chunks = make_chunks(path, docs_dir)
         if not chunks:
             print(f"  skipped {path.name} (no text found)")
             continue
@@ -296,16 +324,17 @@ def build(client):
         )
         total += len(chunks)
         print(f"  {path.name}: {len(chunks)} chunks")
-    print(f"Done: {total} chunks stored in {DB_DIR.relative_to(WEEK_DIR.parent)}/\n")
+    print(f"Done: {total} chunks stored in {shown(db_dir_for(docs_dir))}/\n")
     return collection
 
 
-def get_collection(client):
+def get_collection(client, docs_dir):
     if COLLECTION not in [c.name for c in client.list_collections()]:
         print("No database yet, so building it first.")
-        return build(client)
+        return build(client, docs_dir)
     collection = client.get_collection(COLLECTION)
-    if (collection.metadata or {}).get("fingerprint") != fingerprint(document_files()):
+    files = document_files(docs_dir)
+    if (collection.metadata or {}).get("fingerprint") != fingerprint(files, docs_dir):
         print("Note: documents have changed since the database was built. "
               "Run with --rebuild to include the changes.\n")
     return collection
@@ -343,7 +372,14 @@ def build_prompt(question, hits):
 
 
 def ask_claude(client, question, hits):
+    """Stream the answer to the terminal and return its full text."""
     print(f"\nAnswer from {MODEL}:\n")
+    parts = []
+
+    def note(message):
+        print(message)
+        parts.append(message)
+
     try:
         with client.messages.stream(
             model=MODEL,
@@ -353,45 +389,73 @@ def ask_claude(client, question, hits):
         ) as stream:
             for text in stream.text_stream:
                 print(text, end="", flush=True)
+                parts.append(text)
             final = stream.get_final_message()
     except anthropic.AuthenticationError:
         sys.exit(f"\nThe API key was rejected. Check the key in {KEY_FILE}.")
     except anthropic.RateLimitError:
-        print("\n[Rate limit reached. Wait a moment and try again.]")
-        return
+        note("\n[Rate limit reached. Wait a moment and try again.]")
+        return "".join(parts)
     except anthropic.APIStatusError as e:
-        print(f"\n[API error {e.status_code}: {e.message}]")
-        return
+        note(f"\n[API error {e.status_code}: {e.message}]")
+        return "".join(parts)
     except anthropic.APIConnectionError:
-        print("\n[Could not reach the Anthropic API. Check your internet connection.]")
-        return
+        note("\n[Could not reach the Anthropic API. Check your internet connection.]")
+        return "".join(parts)
     print()
     if final.stop_reason == "refusal":
-        print("[Claude declined to answer this question.]")
+        note("\n[Claude declined to answer this question.]")
     elif final.stop_reason == "max_tokens":
-        print("[The answer was cut off at the token limit.]")
+        note("\n[The answer was cut off at the token limit.]")
+    return "".join(parts)
 
 
 # ---------------------------------------------------------------------------
 
-def answer(collection, claude, question):
+def save_run(path, hits, answer_text):
+    """Write the retrieved chunks, a line with only ANSWER, then Claude's answer."""
+    lines = []
+    for rank, hit in enumerate(hits, start=1):
+        lines.append(f"[{rank}] similarity {hit['similarity']:.3f} | source: {hit['meta']['source']}")
+        lines.append(hit["text"])
+        lines.append("")
+    lines.append("ANSWER")
+    lines.append(answer_text.strip())
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text("\n".join(lines) + "\n", encoding="utf-8")
+    print(f"\nSaved this run to {path}")
+
+
+def answer(collection, claude, question, save_path=None):
     hits = retrieve(collection, question)
     print(f"\nTop {len(hits)} sources:")
     for rank, hit in enumerate(hits, start=1):
         preview = clean(hit["text"])[:PREVIEW_CHARS]
         print(f"  {rank}. similarity {hit['similarity']:.3f} | {hit['meta']['source']}\n     {preview}...")
-    ask_claude(claude, question, hits)
+    answer_text = ask_claude(claude, question, hits)
+    if save_path:
+        save_run(save_path, hits, answer_text)
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Answer questions from Copperline's finance documents.")
+    parser = argparse.ArgumentParser(description="Answer questions from a folder of documents.")
     parser.add_argument("question", nargs="*", help="your question (omit to ask several in a row)")
+    parser.add_argument("--docs", type=Path, default=DEFAULT_DOCS_DIR,
+                        help=f"folder of documents to answer from (default: {shown(DEFAULT_DOCS_DIR)})")
     parser.add_argument("--rebuild", action="store_true", help="rebuild the database from the documents folder")
     parser.add_argument("--show-chunks", action="store_true", help="print every chunk in the database and exit")
+    parser.add_argument("--save", type=Path, metavar="FILE",
+                        help="also write the retrieved chunks and the answer to this text file")
     args = parser.parse_args()
 
-    db = open_db()
-    collection = build(db) if args.rebuild else get_collection(db)
+    docs_dir = args.docs.resolve()
+    if not docs_dir.is_dir():
+        sys.exit(f"Document folder not found: {args.docs}")
+    if args.save and not args.question:
+        sys.exit("--save needs a question on the command line.")
+
+    db = open_db(docs_dir)
+    collection = build(db, docs_dir) if args.rebuild else get_collection(db, docs_dir)
 
     if args.show_chunks:
         data = collection.get()
@@ -403,9 +467,10 @@ def main():
 
     claude = anthropic.Anthropic(api_key=load_api_key())
     if args.question:
-        answer(collection, claude, " ".join(args.question))
+        answer(collection, claude, " ".join(args.question), args.save)
         return
-    print("Ask a question about Copperline's finance documents (press Enter on an empty line to quit).")
+    print(f"Ask a question about the documents in {shown(docs_dir)}/ "
+          "(press Enter on an empty line to quit).")
     while True:
         try:
             question = input("\nQuestion: ").strip()
