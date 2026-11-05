@@ -43,7 +43,7 @@ So this refund would require branch manager approval (and the branch manager can
 
 ## Reflection
 
-What was wrong: The AI found both the old $35 overdraft fee and the new $29 fee. This showed me taht AI can find outdated information if old documents are still in the system. 
+What was wrong: The AI found both the old $35 overdraft fee and the new $29 fee. The outdated information came from consumer-fee-schedule-v7.html. This showed me taht AI can find outdated information if old documents are still in the system. 
 
 How I fixed it: I moved the old document into a separate archive folder and rebuilt the database. this helped make sure the tool only used updated information. 
 
