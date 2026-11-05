@@ -2,13 +2,13 @@
 
 For this assignment, I built a RAG tool using Claude Code. The tool searches documents and uses the information it finds to answer questions. 
 I started with Copperline documents and then changed the tool to work with the Larkfield Credit Union documents. I also added a way to save the questions, answers and sources in text files. 
-I tested six quetions and saved seven required runs becaues I had to run Question 1 before and after fixing the outdated document. 
-What suprised me was that I found both the old $35 fee and the new $29 fee. I learned that it is very important to double-check the information because AI can still make mistakes. 
+I tested six questions and saved seven required runs because I had to run Question 1 before and after fixing the outdated document. 
+What surprised me was that I found both the old $35 fee and the new $29 fee. I learned that it is very important to double-check the information because AI can still make mistakes. 
 
-## Why This Approch 
+## Why This Approach 
 Chunking method: structure
 makes sense on its own: Partly. Most chunks make sense by themselves, but some need information from other sections to fully understand the policy. 
-Label and source: Both. Each chuk includes the doucment tittle ands section heading. The tool also saves the source filename so we know where the information cam from.
+Label and source: Both. Each chunk includes the document tittle ands section heading. The tool also saves the source filename so we know where the information cam from.
 Short enough: Yes. The Larkfield chunks are between 30 and 116 words, which makes them short enough for the embedding model to read. 
 
 ## Example Run
