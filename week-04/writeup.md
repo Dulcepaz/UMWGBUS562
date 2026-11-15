@@ -23,7 +23,7 @@ I would use an agent because it needs to do several things before answering an e
 Email 5 Protection:
 
 The agent should not follow hidden instructions in an email because they could be unsafe. It needs to follow the company's rules and protect employees' private information. 
-The code is what protects the employees' information. Even if the agent follows the wrong instructions, the server cannot give it everyones's balance. 
+The code is what protects the employees' information. Even if the agent follows the wrong instructions, the server cannot give it everyone's balance. 
 
 
 ## Example Run 
@@ -63,6 +63,6 @@ The hardest part for me was fixing the mistakes in the answers. Some emails need
 I learned that AI can still make mistakes even when everything seems to be working fine. It is important to check the answers carefully before preparing a reply. This could help reduce mistakes and save time. 
 After working on this assignment, I feel more confident using AI agents. I learned that building an agent takes time and testing. Even when something works, we still need to make sure the information is correct. 
 
-1. Email 3 tools: get_eave_balance, search_policy, search_policy, search_policy, search_policy, save_reply. The agent first checked Brittany's PTO balance, then checked the company policies before saving the reply. 
+1. Email 3 tools: get_leave_balance, search_policy, search_policy, search_policy, search_policy, save_reply. The agent first checked Brittany's PTO balance, then checked the company policies before saving the reply. 
 2. Email 6 flagged: yes. The agent marked Danielle's email for human review because she reported a serious concern at work. The draft told her that someone from the People and culture team would contact her directly. 
 3. Email 7 balance lookup: Error. The agent could not find Logan's employee record. It did not guess his PTO balance and told him that someone from People and culture would check and follow up with him. 
