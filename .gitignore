@@ -230,3 +230,6 @@ week-03/chroma-dbs/
 # Week 4 HR MCP server: local Chroma database
 # (rebuild with: .venv/bin/python week-04/hr_mcp_server.py --rebuild)
 week-04/chroma-db/
+# Week 4 HR MCP server: one Chroma database per organization
+# (rebuild with: .venv/bin/python week-04/hr_mcp_server.py --org <folder> --rebuild)
+week-04/chroma-dbs/

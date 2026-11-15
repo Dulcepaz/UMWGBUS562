@@ -1,0 +1,18 @@
+DRAFT - NOT SENT
+To: logan.brooks@ridgelinehotels.example
+Subject: [NEEDS HR REVIEW] Re: Days off
+Needs human review: true
+In reply to: 07-logan-seasonal.eml
+Organization: ridgeline-hotels
+Model: claude-sonnet-5
+
+Hi Logan,
+
+Thanks for reaching out. I wasn't able to find a leave balance record for your account, so someone from People and Culture will need to check that for you directly.
+
+In the meantime, here's how PTO eligibility works, so you have some context: according to our PTO Policy, full-time team members earn 12 PTO days a year in their first three years (credited monthly), part-time team members earn PTO in proportion to their scheduled hours, and seasonal team members don't earn PTO at all (pto-policy.html, "How you earn PTO").
+
+Since I don't have confirmation of whether your pool attendant position is classified as full-time, part-time, or seasonal, I can't say how many PTO days you'd have or whether you're accruing any. A member of our team will follow up to confirm your employment status and your current balance.
+
+Thanks for your patience,
+HR Assistant

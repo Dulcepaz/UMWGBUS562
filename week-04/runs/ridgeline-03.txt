@@ -1,0 +1,77 @@
+From: Brittany Cole <brittany.cole@ridgelinehotels.example>
+Subject: Honeymoon
+Email: week-04/ridgeline-hotels/sample-emails/03-brittany-honeymoon.eml    Organization: ridgeline-hotels
+Tools offered: search_policy, get_leave_balance, save_reply
+
+Step 1: get_leave_balance
+  input:  {}
+  result: Employee: Brittany Cole <brittany.cole@ridgelinehotels.example>
+PTO Days Remaining: 4
+Sick Days Remaining: 3
+Source: employees.csv
+
+Step 2: search_policy
+  input:  {"query": "PTO carryover and payout at year end"}
+  result: <source rank="1" file="pto-policy.html" section="Carrying PTO into next year" status="Effective this year. Owner: People and Culture." similarity="0.707">
+Paid Time Off (PTO) Policy › Carrying PTO into next year
+
+You can carry up to 3 unused PTO days into the next calendar year. Any unused days abov ...
+
+Step 3: search_policy
+  input:  {"query": "PTO accrual rate and when days are credited"}
+  result: <source rank="1" file="pto-policy.html" section="Carrying PTO into next year" status="Effective this year. Owner: People and Culture." similarity="0.684">
+Paid Time Off (PTO) Policy › Carrying PTO into next year
+
+You can carry up to 3 unused PTO days into the next calendar year. Any unused days abov ...
+
+Step 4: search_policy
+  input:  {"query": "PTO request notice period and approval"}
+  result: <source rank="1" file="pto-policy.html" section="Requesting PTO" status="Effective this year. Owner: People and Culture." similarity="0.642">
+Paid Time Off (PTO) Policy › Requesting PTO
+
+Request PTO through your hotel's scheduling system. Requests of 4 days or fewer need your supervisor's approval a ...
+
+Step 5: search_policy
+  input:  {"query": "borrowing or advancing PTO days"}
+  result: <source rank="1" file="pto-policy.html" section="Borrowing PTO you haven't earned yet" status="Effective this year. Owner: People and Culture." similarity="0.727">
+Paid Time Off (PTO) Policy › Borrowing PTO you haven't earned yet
+
+If a planned absence is longer than your balance, you can borrow up t ...
+
+Step 6: save_reply
+  input:  {"reply_text": "Hi Brittany,\n\nCongratulations on your upcoming wedding!\n\nHere's what I can tell you based on our PTO policy:\n\nCurrent balance: As of today, you have 4 PTO days remaining.\n\nCarryover into 2027: Since your honeymoon falls in mid-January 2027, it's worth noting that you can carry up to 3 unused PTO days into the next calendar year; any days above that are paid out in your first January paycheck (pto-policy.html, \"Carrying PTO into next year\"). So at most 3 of your current days would carry forward, with any extra being paid out rather than carried.\n\nAccrual for 2027: Additional PTO is credited monthly. Full-time team members earn 12 days a year in their first three years and 18 days a year after that, while part-time team members earn PTO proportional to scheduled hours (pto-policy.html, \"How you earn PTO\"). Because this depends on your employment status (full-time or part-time) and tenure, I can't calculate exactly how many days you'll have banked by mid-January, so I'm not able to confirm whether your balance alone will cover all 6 days.\n\nOptions if you're short:\n- Borrowing PTO: If your balance is still short of 6 days, you can borrow up to 3 PTO days from what you'll earn in the next six months. This requires your general manager's approval, and the request must be submitted at least 30 days in advance. If you leave Ridgeline before earning those days back, their value will be deducted from your final paycheck (pto-policy.html, \"Borrowing PTO you haven't earned yet\").\n\nRequest timing: Since you're requesting 6 consecutive days, you'll need your supervisor's approval at least 30 days ahead of the dates, submitted through your hotel's scheduling system. If any of those days fall on a blackout date, you'd also need your general manager's approval (pto-policy.html, \"Requesting PTO\" and \"Blackout dates\"). Since your honeymoon is about two months out, you're well within the notice window.\n\nBecause your exact balance by January depends on your employment status and tenure, I've flagged this for a member of the People and Culture team to confirm the precise numbers and help with a borrowing request if needed.\n\nBest wishes for your wedding!\n\nWarm regards,\nPeople and Culture Team", "needs_human_review": true, "time_off_next_year": true}
+  result: Draft saved to week-04/drafts/ridgeline-hotels/03-brittany-honeymoon-20261115-134448.txt. It has not been sent.
+
+Stopped: The reply was saved (save_reply is the agent's last step).
+
+DRAFT
+Hi Brittany,
+
+Congratulations on your upcoming wedding!
+
+Here's what I can tell you based on our PTO policy:
+
+Current balance: As of today, you have 4 PTO days remaining.
+
+Carryover into 2027: Since your honeymoon falls in mid-January 2027, it's worth noting that you can carry up to 3 unused PTO days into the next calendar year; any days above that are paid out in your first January paycheck (pto-policy.html, "Carrying PTO into next year"). So at most 3 of your current days would carry forward, with any extra being paid out rather than carried.
+
+Accrual for 2027: Additional PTO is credited monthly. Full-time team members earn 12 days a year in their first three years and 18 days a year after that, while part-time team members earn PTO proportional to scheduled hours (pto-policy.html, "How you earn PTO"). Because this depends on your employment status (full-time or part-time) and tenure, I can't calculate exactly how many days you'll have banked by mid-January, so I'm not able to confirm whether your balance alone will cover all 6 days.
+
+Options if you're short:
+- Borrowing PTO: If your balance is still short of 6 days, you can borrow up to 3 PTO days from what you'll earn in the next six months. This requires your general manager's approval, and the request must be submitted at least 30 days in advance. If you leave Ridgeline before earning those days back, their value will be deducted from your final paycheck (pto-policy.html, "Borrowing PTO you haven't earned yet").
+
+Request timing: Since you're requesting 6 consecutive days, you'll need your supervisor's approval at least 30 days ahead of the dates, submitted through your hotel's scheduling system. If any of those days fall on a blackout date, you'd also need your general manager's approval (pto-policy.html, "Requesting PTO" and "Blackout dates"). Since your honeymoon is about two months out, you're well within the notice window.
+
+Because your exact balance by January depends on your employment status and tenure, I've flagged this for a member of the People and Culture team to confirm the precise numbers and help with a borrowing request if needed.
+
+Best wishes for your wedding!
+
+Warm regards,
+People and Culture Team
+Needs human review: true
+
+Saved as a draft file (not sent): week-04/drafts/ridgeline-hotels/03-brittany-honeymoon-20261115-134448.txt
+
+Tokens: 9,650 input, 2,659 output
+========================================================================
+

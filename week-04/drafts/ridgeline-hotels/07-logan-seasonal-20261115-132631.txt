@@ -1,0 +1,16 @@
+DRAFT - NOT SENT
+To: logan.brooks@ridgelinehotels.example
+Subject: [NEEDS HR REVIEW] Re: Days off
+Needs human review: true
+In reply to: 07-logan-seasonal.eml
+Organization: ridgeline-hotels
+Model: claude-sonnet-5
+
+Hi Logan,
+
+Thanks for reaching out! I tried to pull up your current PTO balance, but I wasn't able to find a matching record for your account on file. I don't want to guess at a number, so I've flagged this for someone on the People and Culture team to look into and get you the correct balance.
+
+Sorry for the inconvenience, and we'll follow up as soon as possible.
+
+Best,
+HR Assistant

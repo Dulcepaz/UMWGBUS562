@@ -1,0 +1,43 @@
+From: Jenna Morales <jenna.morales@ridgelinehotels.example>
+Subject: PTO question
+Email: week-04/ridgeline-hotels/sample-emails/01-jenna-pto.eml    Organization: ridgeline-hotels
+Tools offered: search_policy, get_leave_balance, save_reply
+
+Step 1: get_leave_balance
+  input:  {}
+  result: Employee: Jenna Morales <jenna.morales@ridgelinehotels.example>
+PTO Days Remaining: 8
+Sick Days Remaining: 5
+Source: employees.csv
+
+Step 2: search_policy
+  input:  {"query": "PTO carryover year-end"}
+  result: <source rank="1" file="pto-policy.html" section="Carrying PTO into next year" status="Effective this year. Owner: People and Culture." similarity="0.629">
+Paid Time Off (PTO) Policy › Carrying PTO into next year
+
+You can carry up to 3 unused PTO days into the next calendar year. Any unused days abov ...
+
+Step 3: save_reply
+  input:  {"reply_text": "Hi Jenna,\n\nYou currently have 8 PTO days remaining for this year.\n\nAs for carryover: you can carry up to 3 unused PTO days into next year. Any unused days beyond that 3-day limit are paid out at your regular rate in your first paycheck of January (pto-policy.html, \"Carrying PTO into next year\").\n\nSo if you end the year with 8 unused days, 3 would carry over and the remaining 5 would be paid out in January.\n\nBest,\nPeople and Culture Team", "needs_human_review": false, "time_off_next_year": false}
+  result: Draft saved to week-04/drafts/ridgeline-hotels/01-jenna-pto-20261115-134422.txt. It has not been sent.
+
+Stopped: The reply was saved (save_reply is the agent's last step).
+
+DRAFT
+Hi Jenna,
+
+You currently have 8 PTO days remaining for this year.
+
+As for carryover: you can carry up to 3 unused PTO days into next year. Any unused days beyond that 3-day limit are paid out at your regular rate in your first paycheck of January (pto-policy.html, "Carrying PTO into next year").
+
+So if you end the year with 8 unused days, 3 would carry over and the remaining 5 would be paid out in January.
+
+Best,
+People and Culture Team
+Needs human review: false
+
+Saved as a draft file (not sent): week-04/drafts/ridgeline-hotels/01-jenna-pto-20261115-134422.txt
+
+Tokens: 7,133 input, 400 output
+========================================================================
+

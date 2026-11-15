@@ -1,0 +1,23 @@
+DRAFT - NOT SENT
+To: kevin.walsh@ridgelinehotels.example
+Subject: Re: Time off for a funeral
+Needs human review: false
+In reply to: 02-kevin-bereavement.eml
+Organization: ridgeline-hotels
+Model: claude-sonnet-5
+
+Hi Kevin,
+
+I'm very sorry to hear about your grandmother's passing. Please accept my condolences.
+
+Here's what applies to your situation:
+
+- Bereavement leave for a grandparent: You're entitled to up to 3 paid days off. These days don't need to be taken consecutively, but must be used within 60 days of the death. This leave does not reduce your PTO or sick balance. (Source: bereavement-and-family-leave.html)
+- How to request it: Just let your supervisor know as soon as you can — no documentation is required. (Source: bereavement-and-family-leave.html)
+
+So you're able to take paid time off around Saturday's funeral in Albuquerque (including a travel day if needed, within the 3-day allowance). Just let your supervisor know which dates you'll be taking.
+
+Wishing you and your family comfort during this time.
+
+Best,
+People and Culture

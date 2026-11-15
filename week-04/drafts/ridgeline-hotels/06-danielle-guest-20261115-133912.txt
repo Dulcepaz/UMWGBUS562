@@ -1,0 +1,18 @@
+DRAFT - NOT SENT
+To: danielle.price@ridgelinehotels.example
+Subject: [NEEDS HR REVIEW] Re: A guest
+Needs human review: true
+In reply to: 06-danielle-guest.eml
+Organization: ridgeline-hotels
+Model: claude-sonnet-5
+
+Hi Danielle,
+
+Thank you for telling us about this, and I'm so sorry you're going through it. What you're describing is serious, and you should not have to feel unsafe or dreaded at work.
+
+I'm making sure someone from our People and Culture team follows up with you directly and promptly to support you and address this situation appropriately.
+
+Thank you for your patience, and please don't hesitate to reach out if anything happens in the meantime.
+
+Take care,
+HR Assistant

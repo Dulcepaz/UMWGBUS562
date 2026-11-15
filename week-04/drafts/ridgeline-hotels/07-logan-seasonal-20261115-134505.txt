@@ -1,0 +1,23 @@
+DRAFT - NOT SENT
+To: logan.brooks@ridgelinehotels.example
+Subject: [NEEDS HR REVIEW] Re: Days off
+Needs human review: true
+In reply to: 07-logan-seasonal.eml
+Organization: ridgeline-hotels
+Model: claude-sonnet-5
+
+Hi Logan,
+
+Thanks for reaching out. I wasn't able to find a leave balance on record for you, so I can't give you an exact PTO number right now — someone from People and Culture will look into this and follow up with you directly.
+
+In the meantime, here's how PTO eligibility works so you have some context:
+
+- Full-time team members earn 12 PTO days a year during their first three years (18 days a year after that), credited monthly.
+- Part-time team members earn PTO in proportion to their scheduled hours.
+- Seasonal team members don't earn PTO.
+(pto-policy.html, "How you earn PTO")
+
+Since your PTO balance depends on whether your position is classified as full-time, part-time, or seasonal, I don't want to guess which applies to you. Someone from People and Culture will confirm your employment status and your actual balance.
+
+Best,
+People and Culture Team

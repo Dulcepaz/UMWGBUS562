@@ -1,0 +1,26 @@
+DRAFT - NOT SENT
+To: brittany.cole@ridgelinehotels.example
+Subject: [NEEDS HR REVIEW] Re: Honeymoon
+Needs human review: true
+In reply to: 03-brittany-honeymoon.eml
+Organization: ridgeline-hotels
+Model: claude-sonnet-5
+
+Hi Brittany,
+
+Congratulations on your upcoming wedding!
+
+Here's where things stand:
+
+- Your current PTO balance is 4 days.
+- Since you're hoping to take 6 consecutive days off, that's 2 more than you currently have.
+- How many days you'll have accrued by the time of your trip (about two months out) depends on your employment status - full-time, part-time, or seasonal team members earn PTO at different rates, credited monthly (pto-policy.html, "How you earn PTO"). I can't calculate your exact balance at that future date without confirming your status, so I've flagged this for a person from People and Culture to verify with you.
+- If your accrued balance still isn't enough to cover all 6 days, you may be able to borrow up to 3 PTO days from what you'll earn in the next six months. This requires your general manager's approval, and the request must be submitted at least 30 days in advance (pto-policy.html, "Borrowing PTO you haven't earned yet"). Since your trip is about two months away, you'd meet that notice window. Keep in mind: if you leave Ridgeline before you've earned back the borrowed days, their value will be deducted from your final paycheck.
+- Also note that for any request of 5 or more consecutive days, your supervisor's approval is needed at least 30 days ahead of the start date, and if any of your dates fall on a blackout date, your general manager's approval is required instead (pto-policy.html, "Requesting PTO" and "Blackout dates").
+
+I'd recommend submitting your PTO request through your hotel's scheduling system as soon as your dates are set, since you're right around the 30-day notice threshold depending on exact timing.
+
+A member of our People and Culture team will follow up to confirm your accrual status and help finalize the numbers.
+
+Best,
+HR Assistant

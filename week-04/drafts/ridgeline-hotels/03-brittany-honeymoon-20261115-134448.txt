@@ -1,0 +1,31 @@
+DRAFT - NOT SENT
+To: brittany.cole@ridgelinehotels.example
+Subject: [NEEDS HR REVIEW] Re: Honeymoon
+Needs human review: true
+In reply to: 03-brittany-honeymoon.eml
+Organization: ridgeline-hotels
+Model: claude-sonnet-5
+
+Hi Brittany,
+
+Congratulations on your upcoming wedding!
+
+Here's what I can tell you based on our PTO policy:
+
+Current balance: As of today, you have 4 PTO days remaining.
+
+Carryover into 2027: Since your honeymoon falls in mid-January 2027, it's worth noting that you can carry up to 3 unused PTO days into the next calendar year; any days above that are paid out in your first January paycheck (pto-policy.html, "Carrying PTO into next year"). So at most 3 of your current days would carry forward, with any extra being paid out rather than carried.
+
+Accrual for 2027: Additional PTO is credited monthly. Full-time team members earn 12 days a year in their first three years and 18 days a year after that, while part-time team members earn PTO proportional to scheduled hours (pto-policy.html, "How you earn PTO"). Because this depends on your employment status (full-time or part-time) and tenure, I can't calculate exactly how many days you'll have banked by mid-January, so I'm not able to confirm whether your balance alone will cover all 6 days.
+
+Options if you're short:
+- Borrowing PTO: If your balance is still short of 6 days, you can borrow up to 3 PTO days from what you'll earn in the next six months. This requires your general manager's approval, and the request must be submitted at least 30 days in advance. If you leave Ridgeline before earning those days back, their value will be deducted from your final paycheck (pto-policy.html, "Borrowing PTO you haven't earned yet").
+
+Request timing: Since you're requesting 6 consecutive days, you'll need your supervisor's approval at least 30 days ahead of the dates, submitted through your hotel's scheduling system. If any of those days fall on a blackout date, you'd also need your general manager's approval (pto-policy.html, "Requesting PTO" and "Blackout dates"). Since your honeymoon is about two months out, you're well within the notice window.
+
+Because your exact balance by January depends on your employment status and tenure, I've flagged this for a member of the People and Culture team to confirm the precise numbers and help with a borrowing request if needed.
+
+Best wishes for your wedding!
+
+Warm regards,
+People and Culture Team

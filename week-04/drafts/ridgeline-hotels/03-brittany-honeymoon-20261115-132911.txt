@@ -1,0 +1,25 @@
+DRAFT - NOT SENT
+To: brittany.cole@ridgelinehotels.example
+Subject: [NEEDS HR REVIEW] Re: Honeymoon
+Needs human review: true
+In reply to: 03-brittany-honeymoon.eml
+Organization: ridgeline-hotels
+Model: claude-sonnet-5
+
+Hi Brittany,
+
+Congratulations on your upcoming wedding! Happy to help you plan for the honeymoon time off.
+
+Right now you have 4 PTO days available, which is 2 short of the 6 days you're hoping to take. A few things to keep in mind:
+
+- Timing of the request: Since you're asking for 6 consecutive days, your supervisor needs to approve the request at least 30 days ahead of the dates (pto-policy.html, "Requesting PTO"). As your wedding is about two months out, you have enough lead time for this.
+- Blackout dates: If any of the days you want fall on your hotel's blackout dates, those require your general manager's approval and aren't normally approved (pto-policy.html, "Blackout dates"). Worth checking your hotel's posted blackout list before you lock in dates.
+- Your honeymoon appears to fall after the new year starts. PTO is credited monthly, and how much you'll have earned by then depends on things like whether you're full-time, part-time, or seasonal, and your tenure (pto-policy.html, "How you earn PTO"). I can't calculate your exact balance by that date without confirming your status, so I don't want to guess a number here.
+- Borrowing option: If your balance (current plus whatever you've earned by then) still isn't enough, you can borrow up to 3 PTO days against what you'll earn in the next six months. This needs your general manager's approval, must be requested at least 30 days in advance, and if you leave Ridgeline before earning those days back, their value is deducted from your final paycheck (pto-policy.html, "Borrowing PTO you haven't earned yet").
+
+Given the uncertainty around your exact future balance and the approvals needed (supervisor, possibly GM for borrowing or blackout dates), I'm flagging this for our People and Culture team to confirm the details with you directly.
+
+Congratulations again, and I hope you have a wonderful honeymoon!
+
+Best,
+HR Assistant

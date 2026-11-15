@@ -1,0 +1,21 @@
+DRAFT - NOT SENT
+To: jenna.morales@ridgelinehotels.example
+Subject: Re: PTO question
+Needs human review: false
+In reply to: 01-jenna-pto.eml
+Organization: ridgeline-hotels
+Model: claude-sonnet-5
+
+Hi Jenna,
+
+Here's the information you asked about:
+
+- Your current PTO balance is 8 days remaining this year.
+- For carryover: you can carry up to 3 unused PTO days into next calendar year. Any unused days above 3 are paid out at your regular rate in your first paycheck of January (pto-policy.html, "Carrying PTO into next year").
+
+So if you end the year with 8 unused days, up to 3 would carry into next year and the remaining 5 would be paid out in your January paycheck.
+
+Let me know if you have any other questions!
+
+Best,
+HR Assistant

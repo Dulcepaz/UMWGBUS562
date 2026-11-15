@@ -1,0 +1,36 @@
+DRAFT - NOT SENT
+To: brittany.cole@ridgelinehotels.example
+Subject: [NEEDS HR REVIEW] Re: Honeymoon
+Needs human review: true
+In reply to: 03-brittany-honeymoon.eml
+Organization: ridgeline-hotels
+Model: claude-sonnet-5
+
+Hi Brittany,
+
+Congratulations on your upcoming wedding!
+
+Here's what I can tell you based on our policies:
+
+Current balance: As of today, you have 4 PTO days remaining (per our records).
+
+Timing of your request: Since your honeymoon is about two months out and you're asking for 6 consecutive days, keep in mind the PTO policy requires that requests of 5 or more consecutive days be submitted at least 30 days ahead of time and approved by your supervisor (pto-policy.html, "Requesting PTO"). At two months out, you have enough lead time to meet that requirement, as long as none of the days fall on a hotel blackout date, in which case your general manager would need to approve it instead (pto-policy.html, "Blackout dates").
+
+Will you have enough PTO by then? Your honeymoon falls in January, which is a new calendar year, so your balance will be affected by two things:
+- Carryover: You can carry up to 3 unused PTO days into the new year; anything above 3 is paid out in your first January paycheck (pto-policy.html, "Carrying PTO into next year").
+- New accrual: Full-time team members earn 12 PTO days a year (18 after three years), credited monthly; part-time team members accrue proportionally to scheduled hours (pto-policy.html, "How you earn PTO").
+
+Since I don't have visibility into your full-time/part-time status or exact start date, I can't calculate precisely what your balance will be by January. I'd recommend checking your scheduling system closer to the date or confirming with your supervisor.
+
+If it turns out you're short: You may be able to borrow up to 3 PTO days against what you'll earn in the next six months. A few conditions apply:
+- Your general manager must approve the borrowed days.
+- The request must be submitted at least 30 days in advance.
+- If you leave Ridgeline before you've earned back the borrowed days, their value is deducted from your final paycheck.
+(pto-policy.html, "Borrowing PTO you haven't earned yet")
+
+Because your exact future balance depends on information I can't confirm, I'm flagging this for a member of our People and Culture team to review with you and make sure everything lines up properly for your dates.
+
+Congratulations again, and I hope you have a wonderful honeymoon!
+
+Best,
+HR Assistant

@@ -1,0 +1,28 @@
+DRAFT - NOT SENT
+To: brittany.cole@ridgelinehotels.example
+Subject: [NEEDS HR REVIEW] Re: Honeymoon
+Needs human review: true
+In reply to: 03-brittany-honeymoon.eml
+Organization: ridgeline-hotels
+Model: claude-sonnet-5
+
+Hi Brittany,
+
+Congratulations on your upcoming wedding! Here's what I can tell you based on our PTO policy.
+
+Right now you have 4 PTO days remaining. Since your honeymoon would fall in mid-January 2027, a couple of things affect what your balance will actually be by then:
+
+- Carryover: You can carry up to 3 unused PTO days into the new calendar year. Any days above 3 are paid out in your first January paycheck rather than carried over (pto-policy.html, "Carrying PTO into next year"). So of your current 4 days, at most 3 would carry into 2027.
+- Accrual: Additional PTO is earned monthly - full-time team members earn 12 days a year in their first three years and 18 days a year after that, part-time team members earn PTO proportional to scheduled hours, and seasonal team members don't earn PTO (pto-policy.html, "How you earn PTO"). I don't have your employment status or tenure on file, so I can't calculate exactly how many days you'll have accrued by mid-January - someone from People and Culture will confirm that with you.
+
+Given that, I can't say for certain whether you'll have the full 6 days available by then. A couple of options if you come up short:
+
+- Borrowing PTO: If your planned absence is longer than your balance, you can borrow up to 3 PTO days against what you'll earn in the next six months. This needs your general manager's approval, and the request must be submitted at least 30 days ahead. If you leave Ridgeline before earning those days back, their value is deducted from your final paycheck (pto-policy.html, "Borrowing PTO you haven't earned yet").
+- Requesting the time off: Since you're asking for 6 consecutive days, this needs your supervisor's approval at least 30 days in advance (you're well within that window), submitted through your hotel's scheduling system. If any of the dates fall on a blackout date, it would also need general manager approval (pto-policy.html, "Requesting PTO" and "Blackout dates").
+
+I'd recommend submitting your request as soon as you have exact dates, so your supervisor can confirm availability and, if needed, you can arrange to borrow days in time. I'm looping in a People and Culture team member to confirm your accrual status and exact balance for January.
+
+Congratulations again!
+
+Best,
+HR Assistant

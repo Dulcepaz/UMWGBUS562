@@ -1,0 +1,33 @@
+DRAFT - NOT SENT
+To: brittany.cole@ridgelinehotels.example
+Subject: [NEEDS HR REVIEW] Re: Honeymoon
+Needs human review: true
+In reply to: 03-brittany-honeymoon.eml
+Organization: ridgeline-hotels
+Model: claude-sonnet-5
+
+Hi Brittany,
+
+Congratulations on your upcoming wedding!
+
+Here's what I found looking into your PTO request:
+
+Current balance: You have 4 PTO days remaining right now (per our records).
+
+Requesting 6 days in a row: Under our PTO Policy (pto-policy.html, "Requesting PTO"), any request of 5 or more consecutive days needs your supervisor's approval at least 30 days in advance. Since your trip is about two months out, you're fine on the timing - just be sure to submit the request with enough lead time.
+
+The gap - your balance vs. 6 days needed: With 4 days currently, you're short by 2 days for a 6-day trip. A couple of notes on this:
+
+- Your honeymoon falls in what looks like mid-January 2027, which is next calendar year. Our policy (pto-policy.html, "Carrying PTO into next year") allows you to carry up to 3 unused PTO days into the new year, with anything above that paid out in your first January paycheck. However, I can't tell you exactly what your PTO balance will be by the time of your trip, since that also depends on new PTO accrual for 2027, which isn't something I can calculate from here (it depends on factors like accrual schedule and timing of credits). I'm flagging this for our People and Culture team to confirm your exact balance closer to the date.
+
+- Borrowing PTO: If your balance is still short when the time comes, our policy (pto-policy.html, "Borrowing PTO you haven't earned yet") allows you to borrow up to 3 PTO days against what you'll earn in the next six months. Conditions to know:
+  - It requires your general manager's approval (not just your supervisor's).
+  - The request must be made at least 30 days ahead of the time off.
+  - If you leave Ridgeline before you've earned back the borrowed days, their value will be deducted from your final paycheck.
+
+I'd recommend submitting your PTO request as soon as you can (well before the 30-day minimum) so your supervisor and GM have time to review, and so we can confirm your exact balance and whether borrowing is needed. I'm looping in a People and Culture team member to help confirm the numbers and the borrowing approval if needed.
+
+Congratulations again, and let us know if you have other questions!
+
+Best,
+HR Assistant

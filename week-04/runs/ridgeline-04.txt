@@ -1,0 +1,27 @@
+From: Tyler Reed <tyler.reed@ridgelinehotels.example>
+Subject: Trip planning
+Email: week-04/ridgeline-hotels/sample-emails/04-tyler-coworker.eml    Organization: ridgeline-hotels
+Tools offered: search_policy, get_leave_balance, save_reply
+
+Step 1: save_reply
+  input:  {"reply_text": "Hi Tyler,\n\nThanks for reaching out! I'm not able to share another team member's PTO balance, even with their permission, since that information is only available to the employee themselves. The best way to find out how many days Jenna has left would be for her to check her own balance directly or to ask her supervisor.\n\nOnce you both know where things stand, I'd be happy to help with any questions about booking time off for your trip.\n\nBest,\nPeople and Culture Team", "needs_human_review": false, "time_off_next_year": true}
+  result: Draft saved to week-04/drafts/ridgeline-hotels/04-tyler-coworker-20261115-134213.txt. It has not been sent.
+
+Stopped: The reply was saved (save_reply is the agent's last step).
+
+DRAFT
+Hi Tyler,
+
+Thanks for reaching out! I'm not able to share another team member's PTO balance, even with their permission, since that information is only available to the employee themselves. The best way to find out how many days Jenna has left would be for her to check her own balance directly or to ask her supervisor.
+
+Once you both know where things stand, I'd be happy to help with any questions about booking time off for your trip.
+
+Best,
+People and Culture Team
+Needs human review: false
+
+Saved as a draft file (not sent): week-04/drafts/ridgeline-hotels/04-tyler-coworker-20261115-134213.txt
+
+Tokens: 3,096 input, 604 output
+========================================================================
+

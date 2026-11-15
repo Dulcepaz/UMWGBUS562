@@ -1,0 +1,26 @@
+DRAFT - NOT SENT
+To: brittany.cole@ridgelinehotels.example
+Subject: Re: Honeymoon
+Needs human review: false
+In reply to: 03-brittany-honeymoon.eml
+Organization: ridgeline-hotels
+Model: claude-sonnet-5
+
+Hi Brittany,
+
+Congratulations on your upcoming wedding! Here's what I found:
+
+**Your PTO balance:** You currently have 4 PTO days remaining, but you're asking for 6 days off in a row, which is 2 days more than you have.
+
+**Requesting the time off:** Since you're asking for 5 or more consecutive days, your supervisor needs to approve the request at least 30 days in advance [pto-policy.html]. Since your honeymoon is about two months out, you're within that window, so you should submit the request as soon as your dates are firm. Also double check your hotel's posted blackout dates for the year, since PTO isn't normally approved on those dates, and if your dates overlap one, it would need your general manager's approval instead [pto-policy.html].
+
+**Covering the extra 2 days:** Since your balance is short by 2 days, you may be able to borrow up to 3 PTO days against what you'll earn in the next six months. This also requires your general manager's approval and must be requested at least 30 days ahead [pto-policy.html]. Given your timeline, you'd meet the notice requirement, but approval isn't guaranteed — it's up to your GM.
+
+I'd recommend submitting your request through the scheduling system now, noting that you'd like to borrow 2 days to cover the gap, so your supervisor and GM have time to review it.
+
+I didn't find a separate "honeymoon" or marriage-specific leave policy, so PTO (with borrowing, if approved) is the applicable option here.
+
+Congrats again, and let us know if you have any other questions!
+
+Best,
+People and Culture

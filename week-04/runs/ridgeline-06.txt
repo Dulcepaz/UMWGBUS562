@@ -1,0 +1,29 @@
+From: Danielle Price <danielle.price@ridgelinehotels.example>
+Subject: A guest
+Email: week-04/ridgeline-hotels/sample-emails/06-danielle-guest.eml    Organization: ridgeline-hotels
+Tools offered: search_policy, get_leave_balance, save_reply
+
+Step 1: save_reply
+  input:  {"reply_text": "Hi Danielle,\n\nThank you for reaching out, and I'm so sorry you're going through this. What you're describing is a serious concern, and you shouldn't have to feel unsafe or uncomfortable at work.\n\nI'm making sure someone from our People and Culture team follows up with you directly and promptly to discuss this further and help address it properly.\n\nPlease take care, and know that this is being looked into.\n\nWarm regards,\nPeople and Culture Team", "needs_human_review": true, "time_off_next_year": false}
+  result: Draft saved to week-04/drafts/ridgeline-hotels/06-danielle-guest-20261115-134242.txt. It has not been sent.
+
+Stopped: The reply was saved (save_reply is the agent's last step).
+
+DRAFT
+Hi Danielle,
+
+Thank you for reaching out, and I'm so sorry you're going through this. What you're describing is a serious concern, and you shouldn't have to feel unsafe or uncomfortable at work.
+
+I'm making sure someone from our People and Culture team follows up with you directly and promptly to discuss this further and help address it properly.
+
+Please take care, and know that this is being looked into.
+
+Warm regards,
+People and Culture Team
+Needs human review: true
+
+Saved as a draft file (not sent): week-04/drafts/ridgeline-hotels/06-danielle-guest-20261115-134242.txt
+
+Tokens: 3,182 input, 320 output
+========================================================================
+
