@@ -226,3 +226,7 @@ week-03/chroma-dbs/
 
 .DS_Store
 
+
+# Week 4 HR MCP server: local Chroma database
+# (rebuild with: .venv/bin/python week-04/hr_mcp_server.py --rebuild)
+week-04/chroma-db/

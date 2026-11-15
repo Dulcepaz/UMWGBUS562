@@ -1,0 +1,21 @@
+DRAFT - NOT SENT
+To: mike.sullivan@hartwellfoods.example
+Subject: Re: Jury summons
+Needs human review: no
+In reply to: 02-mike-jury-duty.eml
+Model: claude-sonnet-5
+
+Hi Mike,
+
+Good news — you don't need to use any vacation days for jury duty. Per Hartwell's policy, you'll be paid your regular wages for up to 10 business days of jury duty per year, and it won't reduce your vacation or sick balance ([leave-policy.html], "Jury duty").
+
+What to do:
+1. Send a copy of your jury summons to Human Resources.
+2. Let your manager know as soon as possible so they can plan around your absence.
+
+For reference, your current balances are 12 vacation days, 8 sick days, and 2 personal days, but you shouldn't need to draw on these for jury duty.
+
+Let us know if you have any other questions!
+
+Best,
+HR Team

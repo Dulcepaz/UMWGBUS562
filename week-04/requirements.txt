@@ -1,0 +1,6 @@
+# Week 4 HR MCP server and agent. Install with:
+#   .venv/bin/python -m pip install -r week-04/requirements.txt
+anthropic==2.5.0
+mcp==2.3.0
+chromadb==1.5.9
+beautifulsoup4==4.15.0
