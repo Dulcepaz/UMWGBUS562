@@ -1,0 +1,174 @@
+Company: Copperline Coffee Machines    Data: week-05/copperline-coffee
+  columns: bill-of-materials.csv: product = product, parts per unit = per_unit
+  columns: orders.csv: product = product, quantity = units, ship day = ship_by_day
+Email: week-05/copperline-coffee/supplier-emails/02-marlow-boiler-options.eml    Coordinator: pipeline
+From: Victor Lindqvist <v.lindqvist@marlowmetal.example>
+Subject: PO-5520 - BL-12 boilers - please choose a shipping option
+
+Step 1: supply analyst
+  Supply analyst
+    HANDOFF coordinator -> supply analyst: supplier email "PO-5520 - BL-12 boilers - please choose a shipping option"
+    analyst tool 1: get_part {"part_id": "BL-12"}
+    analyst tool 2: get_orders_for_part {"part_id": "BL-12"}
+    analyst tool 3: check_coverage {"part_id": "BL-12", "arrivals": [{"qty": 80, "day": 7}, {"qty": 120, "day": 21}]}
+      -> orders at risk: O-2205
+    analyst tool 4: check_coverage {"part_id": "BL-12", "arrivals": [{"qty": 200, "day": 13}]}
+      -> orders at risk: O-2203
+    HANDOFF supply analyst -> coordinator: brief (JSON); orders at risk: none
+    analyst's brief, in full:
+      {
+        "part_id": "BL-12",
+        "what_changed": "PO-5520's 200 boilers, originally all due day 7, will instead arrive either as 80 on day 7 plus 120 on day 21 (Option A) or as 200 together on day 13 (Option B).",
+        "orders_at_risk": [],
+        "options": [
+          {
+            "name": "Option A",
+            "order_ids": [
+              "O-2205"
+            ],
+            "arrivals": [
+              {
+                "qty": 80,
+                "day": 7
+              },
+              {
+                "qty": 120,
+                "day": 21
+              }
+            ]
+          },
+          {
+            "name": "Option B",
+            "order_ids": [
+              "O-2203"
+            ],
+            "arrivals": [
+              {
+                "qty": 200,
+                "day": 13
+              }
+            ]
+          }
+        ],
+        "decisions_for_a_person": [
+          "Choose between Option A (puts order O-2205, Tall Pines Coffee House, at risk: 5 units short, ship day 17, ready day 21, late penalty applies) and Option B (puts order O-2203, Elm State University Dining, at risk: 40 units short, ship day 12, ready day 13, late penalty applies).",
+          "Reply to Marlow Metalworks within three business days with the chosen option, or Option B will be applied by default."
+        ],
+        "supplier_questions": [
+          "Which shipping option (A or B) would Copperline like for PO-5520?"
+        ]
+      }
+
+Step 2: customer notices, one set per option, held until a person chooses (Option A: O-2205; Option B: O-2203)
+  Customer writer: O-2205 (only if Option A is chosen)
+    facts for O-2205 only: order_id, customer, product, quantity, days_are_counted_from, planned_ship_in_days_from_today, expected_ship_in_days_from_today, days_later_than_planned
+    HANDOFF coordinator -> customer writer: write the first draft
+    HANDOFF customer writer -> reviewer: draft 1 (83 words)
+    round 1: reviewer APPROVE; code checks: pass
+    final name check: pass
+    HANDOFF reviewer -> coordinator: final draft MARKED FOR A PERSON: order O-2205 has a late penalty; hold: send only if a person chooses Option A; under the other option(s) this order may not be late, or may be late by a different amount
+
+(Held: this notice is for Option A only. Send it only if a person chooses Option A.)
+
+FINAL DRAFT TO CUSTOMER O-2205
+Dear Tall Pines Coffee House,
+
+We're writing about your order O-2205 for 25 units of the Cafe One.
+
+Your order was originally planned to ship in 17 days from today, but it is now expected to ship in 21 days from today — 4 days later than planned.
+
+We apologize for this delay. It is due to a delay in a part from one of our suppliers.
+
+We will keep you updated on the progress of your order.
+
+Customer Service, Copperline Coffee Machines
+Marked for a person: yes
+
+  Customer writer: O-2203 (only if Option B is chosen)
+    facts for O-2203 only: order_id, customer, product, quantity, days_are_counted_from, planned_ship_in_days_from_today, expected_ship_in_days_from_today, days_later_than_planned
+    HANDOFF coordinator -> customer writer: write the first draft
+    HANDOFF customer writer -> reviewer: draft 1 (65 words)
+    round 1: reviewer APPROVE; code checks: pass
+    final name check: pass
+    HANDOFF reviewer -> coordinator: final draft MARKED FOR A PERSON: order O-2203 has a late penalty; hold: send only if a person chooses Option B; under the other option(s) this order may not be late, or may be late by a different amount
+
+(Held: this notice is for Option B only. Send it only if a person chooses Option B.)
+
+FINAL DRAFT TO CUSTOMER O-2203
+Dear Elm State University Dining,
+
+We are writing about your order O-2203 for 50 Cafe One units. The order is now expected to ship 1 day later than planned, due to a delay in a part from one of our suppliers.
+
+We apologize for this delay and will keep you updated on the order's progress.
+
+Thank you for your patience.
+
+Customer Service, Copperline Coffee Machines
+Marked for a person: yes
+
+
+Step 3: reply to the supplier
+  Supplier writer
+    customer names, late-penalty flags, and penalty decisions removed from the email and brief before the supplier writer sees them
+    figures worked out by code for Option A: 1 order(s) at risk, 5 units short, 4 days late
+    figures worked out by code for Option B: 1 order(s) at risk, 40 units short, 1 days late
+    delivery days in the schedules checked: [7, 13, 21]
+    HANDOFF coordinator -> supplier writer: write the first draft
+    HANDOFF supplier writer -> reviewer: draft 1 (150 words)
+    round 1: reviewer APPROVE; code checks: pass
+    final name check: pass
+    HANDOFF reviewer -> coordinator: final draft MARKED FOR A PERSON: order O-2203 has a late penalty; order O-2205 has a late penalty; the supplier changed the delivery schedule for BL-12: a person must approve or reject it before Copperline accepts anything; the supplier offers options: a person must choose one
+
+FINAL DRAFT TO SUPPLIER
+Hi Victor,
+
+To confirm our understanding of PO-5520 for the 200 BL-12 boilers: Option A would ship 80 units on the original scheduled date, with the remaining 120 units 14 days later. Option B would ship all 200 units together, 6 days after the scheduled date.
+
+As we understand the impact:
+
+- Option A: 1 order affected, 5 units short, 4 days late.
+- Option B: 1 order affected, 40 units short, 1 day late.
+
+We are not yet in a position to confirm a choice between these options — that decision needs sign-off from a person on our side. We will get back to you with our decision within your three-business-day window.
+
+In the meantime, if there's any way to ship more units sooner under either option, that would help reduce the impact on our side — please let us know if that's possible.
+
+Regards,
+Purchasing, Copperline Coffee Machines
+Marked for a person: yes
+
+
+========================================================================
+Summary
+========================================================================
+Needs a decision by a person: yes
+
+Drafts saved (3), in week-05/drafts/copperline-coffee/02-marlow-boiler-options/pipeline-20261121-224721/:
+  customer-notice-O-2205-if-option-a.txt MARKED FOR A PERSON
+  customer-notice-O-2203-if-option-b.txt MARKED FOR A PERSON
+  supplier-reply.txt             MARKED FOR A PERSON
+
+Drafts marked for a person (3):
+  customer-notice-O-2205-if-option-a.txt
+    - order O-2205 has a late penalty
+    - hold: send only if a person chooses Option A; under the other option(s) this order may not be late, or may be late by a different amount
+  customer-notice-O-2203-if-option-b.txt
+    - order O-2203 has a late penalty
+    - hold: send only if a person chooses Option B; under the other option(s) this order may not be late, or may be late by a different amount
+  supplier-reply.txt
+    - order O-2203 has a late penalty
+    - order O-2205 has a late penalty
+    - the supplier changed the delivery schedule for BL-12: a person must approve or reject it before Copperline accepts anything
+    - the supplier offers options: a person must choose one
+
+Decisions for a person (3):
+  - Choose one of the supplier's options (Option A, Option B) for BL-12, or reject them: no revised delivery schedule is accepted until a person decides. (added by code)
+  - Choose between Option A (puts order O-2205, Tall Pines Coffee House, at risk: 5 units short, ship day 17, ready day 21, late penalty applies) and Option B (puts order O-2203, Elm State University Dining, at risk: 40 units short, ship day 12, ready day 13, late penalty applies).
+  - Reply to Marlow Metalworks within three business days with the chosen option, or Option B will be applied by default.
+
+Tokens used by each specialist:
+  analyst            12,199 input      882 output
+  customer writer       817 input      276 output
+  reviewer            3,662 input       21 output
+  supplier writer     1,868 input      282 output
+  total              18,546 input    1,461 output

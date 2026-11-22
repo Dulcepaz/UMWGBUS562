@@ -1,0 +1,48 @@
+Company: Copperline Coffee Machines    Data: week-05/copperline-coffee
+  columns: bill-of-materials.csv: product = product, parts per unit = per_unit
+  columns: orders.csv: product = product, quantity = units, ship day = ship_by_day
+Email: week-05/copperline-coffee/supplier-emails/04-pelham-maintenance-closure.eml    Coordinator: orchestrator
+From: Owen Brady <o.brady@pelhamfittings.example>
+Subject: Plant maintenance closure - PO-5540 not affected
+
+Orchestrator choice 1: run_supply_analyst
+  Supply analyst
+    HANDOFF coordinator -> supply analyst: supplier email "Plant maintenance closure - PO-5540 not affected"
+    analyst tool 1: get_part {"part_id": "SW-3"}
+    analyst tool 2: get_orders_for_part {"part_id": "SW-3"}
+    analyst tool 3: check_coverage {"part_id": "SW-3", "arrivals": [{"qty": 60, "day": 11}]}
+      -> orders at risk: none
+    HANDOFF supply analyst -> coordinator: brief (JSON); orders at risk: none
+    analyst's brief, in full:
+      {
+        "part_id": "SW-3",
+        "what_changed": "No change: PO-5540 (60 units) still arrives in 11 days as scheduled, unaffected by the supplier's one-week maintenance closure starting in 28 days.",
+        "orders_at_risk": [],
+        "options": [],
+        "decisions_for_a_person": [],
+        "supplier_questions": []
+      }
+
+Orchestrator choice 2: finish (needs a decision: no)
+
+========================================================================
+Summary
+========================================================================
+Orchestrator's summary for the purchasing manager:
+  Pelham Fittings notified of a one-week plant maintenance closure starting Dec 19, 2026. Analyst confirmed PO-5540 (60x SW-3 steam wands) ships before the closure and arrives on schedule in 11 days - no customer orders are at risk. No supplier reply or customer notices were needed; no drafts were created.
+
+Needs a decision by a person: no
+
+Drafts saved (0), in week-05/drafts/copperline-coffee/04-pelham-maintenance-closure/orchestrator-20261121-224512/:
+  none
+
+Drafts marked for a person (0):
+  none
+
+Decisions for a person (0):
+  none
+
+Tokens used by each specialist:
+  orchestrator        3,635 input      371 output
+  analyst             8,989 input      384 output
+  total              12,624 input      755 output

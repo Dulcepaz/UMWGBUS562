@@ -1,0 +1,68 @@
+Company: Copperline Coffee Machines    Data: week-05/copperline-coffee
+  columns: bill-of-materials.csv: product = product, parts per unit = per_unit
+  columns: orders.csv: product = product, quantity = units, ship day = ship_by_day
+Email: week-05/copperline-coffee/supplier-emails/04-pelham-maintenance-closure.eml    Coordinator: pipeline
+From: Owen Brady <o.brady@pelhamfittings.example>
+Subject: Plant maintenance closure - PO-5540 not affected
+
+Step 1: supply analyst
+  Supply analyst
+    HANDOFF coordinator -> supply analyst: supplier email "Plant maintenance closure - PO-5540 not affected"
+    analyst tool 1: get_part {"part_id": "SW-3"}
+    analyst tool 2: get_orders_for_part {"part_id": "SW-3"}
+    analyst tool 3: check_coverage {"part_id": "SW-3", "arrivals": [{"qty": 60, "day": 11}]}
+      -> orders at risk: none
+    HANDOFF supply analyst -> coordinator: brief (JSON); orders at risk: none
+    analyst's brief, in full:
+      {
+        "part_id": "SW-3",
+        "what_changed": "No change to the schedule: PO-5540 (60 units) still arrives in 11 days, unaffected by the supplier's one-week plant maintenance closure starting in 28 days.",
+        "orders_at_risk": [],
+        "options": [],
+        "decisions_for_a_person": [],
+        "supplier_questions": []
+      }
+
+Step 2: customer notices: skipped (no orders at risk)
+
+Step 3: reply to the supplier
+  Supplier writer
+    customer names, late-penalty flags, and penalty decisions removed from the email and brief before the supplier writer sees them
+    figures worked out by code: 0 order(s) at risk, 0 units short, 0 days late
+    delivery days in the schedules checked: [11]
+    HANDOFF coordinator -> supplier writer: write the first draft
+    HANDOFF supplier writer -> reviewer: draft 1 (53 words)
+    round 1: reviewer APPROVE; code checks: pass
+    final name check: pass
+    HANDOFF reviewer -> coordinator: final draft approved
+
+FINAL DRAFT TO SUPPLIER
+Hello Owen,
+
+Thank you for the update. To confirm our understanding: PO-5540 (60 SW-3 steam wands) remains unaffected by the plant maintenance closure and is still scheduled to arrive on day 11 from today. No action is needed on our end.
+
+We appreciate you flagging this ahead of time.
+
+Purchasing, Copperline Coffee Machines
+Marked for a person: no
+
+
+========================================================================
+Summary
+========================================================================
+Needs a decision by a person: no
+
+Drafts saved (1), in week-05/drafts/copperline-coffee/04-pelham-maintenance-closure/pipeline-20261121-224449/:
+  supplier-reply.txt             approved
+
+Drafts marked for a person (0):
+  none
+
+Decisions for a person (0):
+  none
+
+Tokens used by each specialist:
+  analyst             9,041 input      432 output
+  supplier writer     1,197 input      125 output
+  reviewer            1,403 input        7 output
+  total              11,641 input      564 output

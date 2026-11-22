@@ -233,3 +233,7 @@ week-04/chroma-db/
 # Week 4 HR MCP server: one Chroma database per organization
 # (rebuild with: .venv/bin/python week-04/hr_mcp_server.py --org <folder> --rebuild)
 week-04/chroma-dbs/
+
+# Week 5 supplier-response team: saved drafts (customer names and addresses from the sample data)
+# (regenerate by running week-05/pipeline.py or week-05/orchestrator.py)
+week-05/drafts/

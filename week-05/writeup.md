@@ -1,0 +1,219 @@
+## What I Built
+
+
+For this assignment, I built a team of AI specialist to help Cooperline Coffee Machines respond to supplier emails. The team checks the parts, customer orders, and delivery dates. It also prepares replies to suppliers and notices for customers when an order may be late.
+
+I changed the programs so they could work with Cooperline's files instead of only Brookfield's files. I also added checks to help catch mistakes, protect customer information, and make sure a person reviews important decisions.
+
+I tested four different supplier emails using both the pipeline and the orchestrator. This gave me eight save runs. The pipeline follows the same steps each time, while the orchestrator chooses which specialists it needs. 
+
+During testing, I found some mistakes with delivery dates and supplier replies. I made changes and tested the programs again. The final runs showed better results, and the system did not approved supplier changes without human review. 
+
+
+## Why This Approach
+
+
+Task A: Agent - I chose an agent because it can check the customer's order, look up the warranty and prepare a reply. Every customer may have a different problem, so the agent can decide what information it needs before answering. 
+
+Task B: Team - I chose a team because this is a serious safety problem that needs different specialists. One can check which machines have the bad part, another can prepare notices for customers, and another can write the report for the safety regulator. A person should review everything before it is sent. 
+
+Task C: Pipeline - I chose a pipeline because every new order follows the same steps. The system checks the parts in stock, prepares the order confirmation, and reviews it. Since the process is always the same, there is no need for the AI to choose different steps. 
+
+Task D: General Inbox- I chose an orchestrator because not every email needs the same steps. Some email are about delivery delays, while others are about prices or customer complaints. The orchestrator can decide which specialists to use depending on the problem or situation. 
+
+
+## Example Run
+
+```
+Company: Copperline Coffee Machines    Data: week-05/copperline-coffee
+  columns: bill-of-materials.csv: product = product, parts per unit = per_unit
+  columns: orders.csv: product = product, quantity = units, ship day = ship_by_day
+Email: week-05/copperline-coffee/supplier-emails/01-danforth-pump-delay.eml    Coordinator: pipeline
+From: Diane Kessler <d.kessler@danforthpump.example>
+Subject: PO-5512 - PU-20 pumps - partial shipment
+
+Step 1: supply analyst
+  Supply analyst
+    HANDOFF coordinator -> supply analyst: supplier email "PO-5512 - PU-20 pumps - partial shipment"
+    analyst tool 1: get_part {"part_id": "PU-20"}
+    analyst tool 2: get_orders_for_part {"part_id": "PU-20"}
+    analyst tool 3: check_coverage {"part_id": "PU-20", "arrivals": [{"qty": 40, "day": 4}, {"qty": 160, "day": 19}]}
+      -> orders at risk: O-2203, O-2204, O-2205
+    HANDOFF supply analyst -> coordinator: brief (JSON); orders at risk: O-2203, O-2204, O-2205
+    analyst's brief, in full:
+      {
+        "part_id": "PU-20",
+        "what_changed": "Of the 200 pumps on PO-5512, only 40 will arrive on day 4 (as originally scheduled) and the remaining 160 will arrive 15 days later, on day 19.",
+        "orders_at_risk": [
+          {
+            "order_id": "O-2203",
+            "customer": "Elm State University Dining",
+            "units_short": 10,
+            "ship_day": 12,
+            "ready_day": 19,
+            "late_penalty": true
+          },
+          {
+            "order_id": "O-2204",
+            "customer": "Kettle & Crumb Bakery",
+            "units_short": 20,
+            "ship_day": 15,
+            "ready_day": 19,
+            "late_penalty": false
+          },
+          {
+            "order_id": "O-2205",
+            "customer": "Tall Pines Coffee House",
+            "units_short": 25,
+            "ship_day": 17,
+            "ready_day": 19,
+            "late_penalty": true
+          }
+        ],
+        "options": [],
+        "decisions_for_a_person": [
+          "Decide whether to expedite or partially reallocate pumps to protect the two late-penalty orders (O-2203 and O-2205) given the delay in the 160-unit shipment to day 19.",
+          "Decide how/whether to respond to Danforth's request for the list of affected customer orders and quantities."
+        ],
+        "supplier_questions": [
+          "Could you send us a list of the customer orders these pumps are for, with each customer's name and quantity?"
+        ]
+      }
+
+Step 2: customer notices (3: O-2203, O-2204, O-2205)
+  Customer writer: O-2203
+    facts for O-2203 only: order_id, customer, product, quantity, days_are_counted_from, planned_ship_in_days_from_today, expected_ship_in_days_from_today, days_later_than_planned
+    HANDOFF coordinator -> customer writer: write the first draft
+    HANDOFF customer writer -> reviewer: draft 1 (87 words)
+    round 1: reviewer APPROVE; code checks: pass
+    final name check: pass
+    HANDOFF reviewer -> coordinator: final draft MARKED FOR A PERSON: order O-2203 has a late penalty
+
+FINAL DRAFT TO CUSTOMER O-2203
+Dear Elm State University Dining,
+
+We're writing to update you on order O-2203 for 50 Cafe One machines. The order is now expected to ship 7 days later than originally planned, with shipment now expected in 19 days rather than the originally planned 12.
+
+We apologize for this delay. It is due to a delay in a part from one of our suppliers.
+
+We will keep you informed of any further updates regarding your order. Thank you for your patience and understanding.
+
+Customer Service, Copperline Coffee Machines
+Marked for a person: yes
+
+  Customer writer: O-2204
+    facts for O-2204 only: order_id, customer, product, quantity, days_are_counted_from, planned_ship_in_days_from_today, expected_ship_in_days_from_today, days_later_than_planned
+    HANDOFF coordinator -> customer writer: write the first draft
+    HANDOFF customer writer -> reviewer: draft 1 (78 words)
+    round 1: reviewer APPROVE; code checks: pass
+    final name check: pass
+    HANDOFF reviewer -> coordinator: final draft approved
+
+FINAL DRAFT TO CUSTOMER O-2204
+Dear Kettle & Crumb Bakery,
+
+We're writing about your order O-2204 for 10 Cafe Duo units. This order was originally planned to ship in 15 days, but is now expected to ship in 19 days, a delay of 4 days.
+
+We apologize for this delay. It is due to a delay in a part from one of our suppliers.
+
+Thank you for your patience, and please reach out if you have any questions.
+
+Customer Service, Copperline Coffee Machines
+Marked for a person: no
+
+  Customer writer: O-2205
+    facts for O-2205 only: order_id, customer, product, quantity, days_are_counted_from, planned_ship_in_days_from_today, expected_ship_in_days_from_today, days_later_than_planned
+    HANDOFF coordinator -> customer writer: write the first draft
+    HANDOFF customer writer -> reviewer: draft 1 (90 words)
+    round 1: reviewer APPROVE; code checks: pass
+    final name check: pass
+    HANDOFF reviewer -> coordinator: final draft MARKED FOR A PERSON: order O-2205 has a late penalty
+
+FINAL DRAFT TO CUSTOMER O-2205
+Dear Tall Pines Coffee House,
+
+We're writing to let you know about an update to your order, O-2205, for 25 units of the Cafe One machine. The order is now expected to ship 2 days later than originally planned, with shipping now expected in 19 days from today.
+
+We apologize for this delay. It is due to a delay in a part from one of our suppliers.
+
+We appreciate your patience and will keep you informed if there is any further change to this timeline.
+
+Customer Service, Copperline Coffee Machines
+Marked for a person: yes
+
+
+Step 3: reply to the supplier
+  Supplier writer
+    customer names, late-penalty flags, and penalty decisions removed from the email and brief before the supplier writer sees them
+    figures worked out by code: 3 order(s) at risk, 55 units short, 2 to 7 days late
+    delivery days in the schedules checked: [4, 19]
+    HANDOFF coordinator -> supplier writer: write the first draft
+    HANDOFF supplier writer -> reviewer: draft 1 (122 words)
+    round 1: reviewer APPROVE; code checks: pass
+    final name check: pass
+    HANDOFF reviewer -> coordinator: final draft MARKED FOR A PERSON: order O-2203 has a late penalty; order O-2205 has a late penalty; the supplier changed the delivery schedule for PU-20: a person must approve or reject it before Copperline accepts anything
+
+FINAL DRAFT TO SUPPLIER
+Hello Diane,
+
+To confirm our understanding: of the 200 PU-20 pumps on PO-5512, 40 will arrive on day 4 as originally scheduled, and the remaining 160 will arrive 15 days later, on day 19.
+
+This change affects 3 of our orders, totaling 55 units short, with shipments running 2 to 7 days late depending on the order.
+
+We're not able to share customer names or individual order details. We can tell you the overall impact in units and days, as above.
+
+If there's any way to ship more of the 160 sooner, that would help reduce the delay on our end — please let us know what's possible.
+
+Thank you for flagging this. We'll follow up as needed.
+
+Purchasing, Copperline Coffee Machines
+Marked for a person: yes
+
+
+========================================================================
+Summary
+========================================================================
+Needs a decision by a person: yes
+
+Drafts saved (4), in week-05/drafts/copperline-coffee/01-danforth-pump-delay/pipeline-20261121-224721/:
+  customer-notice-O-2203.txt     MARKED FOR A PERSON
+  customer-notice-O-2204.txt     approved
+  customer-notice-O-2205.txt     MARKED FOR A PERSON
+  supplier-reply.txt             MARKED FOR A PERSON
+
+Drafts marked for a person (3):
+  customer-notice-O-2203.txt
+    - order O-2203 has a late penalty
+  customer-notice-O-2205.txt
+    - order O-2205 has a late penalty
+  supplier-reply.txt
+    - order O-2203 has a late penalty
+    - order O-2205 has a late penalty
+    - the supplier changed the delivery schedule for PU-20: a person must approve or reject it before Copperline accepts anything
+
+Decisions for a person (3):
+  - Approve or reject the revised delivery schedule for PU-20: nothing is accepted until a person decides. (added by code)
+  - Decide whether to expedite or partially reallocate pumps to protect the two late-penalty orders (O-2203 and O-2205) given the delay in the 160-unit shipment to day 19.
+  - Decide how/whether to respond to Danforth's request for the list of affected customer orders and quantities.
+
+Tokens used by each specialist:
+  analyst            10,667 input      739 output
+  customer writer     1,231 input      479 output
+  reviewer            4,121 input       28 output
+  supplier writer     1,585 input      238 output
+  total              17,604 input    1,484 output
+```
+
+## Reflection
+
+
+Email 1 reading: Matches - The analyst understood that the remaining 160 pumps would arrive 15 days later, on day 19. 
+
+Email 1 customer names: No - The supplier reply did not mention any customer names or order numbers. It only explained how the delay affected the orders. 
+
+Email 4 Orchestrator: supply analyst, then finish. The orchestrator checked the information and found no orders at risk, so it stopped. The pipeline followed all its steps and still prepared a supplier reply, even though no reply was needed. 
+
+
+
+
+

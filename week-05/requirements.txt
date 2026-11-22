@@ -1,0 +1,4 @@
+# Week 5 Brookfield supplier-email team. Install with:
+#   .venv/bin/python -m pip install -r week-05/requirements.txt
+anthropic==2.5.0
+mcp==2.3.0
